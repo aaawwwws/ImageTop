@@ -22,32 +22,50 @@ namespace image
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static ImageSelect ImageFile = new ImageSelect();
-        private string ImageFileName;
+        public BitmapImage _image { get; set; }
+        private static int Run = 0;
 
         public MainWindow()
         {
             InitializeComponent();
-            this.ImageSet();
-            this.Topmost = true;
-        }
+            this.Main();
+            this.KeyDown += new KeyEventHandler(F12);
+         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        { }
-
-        private void ImageSet()
+        //メインメソッド()
+        private void Main()
         {
-            ImageSelect ImageFIles = new ImageSelect();
-            if (this.ImageFileName == null)
+            if (Run < 1)
             {
-                ImageFileName = ImageFIles.FileSelect();
-                BitmapImage ImageUri = new BitmapImage(new Uri(ImageFileName));
-                Image.StretchDirection = StretchDirection.DownOnly;
-                Image.Source = ImageUri;
+                ImageSelect IS = new ImageSelect(this);
+                IS.ImageSet();
+                _image = IS.ImageUri;
+                Run++;
             }
             else
             {
-                return;
+                this.ImageShow(_image);
+            }
+        }
+
+        public void ImageShow(BitmapImage Image)
+        {
+            this.Image.StretchDirection = StretchDirection.DownOnly;
+            this.Image.Source = Image;
+        }
+
+        //F12を押したら実行
+        private void F12(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.F12)
+            {
+                Window1 BorderLess = new Window1();
+                BorderLess.Left = this.Left;
+                BorderLess.Top = this.Top;
+                BorderLess.Topmost = true;
+                BorderLess.Show();
+                BorderLess.ImageShow(_image);
+                this.Close();
             }
         }
     }
