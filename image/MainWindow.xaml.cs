@@ -26,13 +26,6 @@ namespace image
     {
         public BitmapImage _image { get; set; }
         private static int Run = 0;
-        protected const int GWL_EXSTYLE = (-20);
-        protected const int WS_EX_TRANSPARENT = 0x00000020;
-
-        [DllImport("user32")]
-        protected static extern int GetWindowLong(IntPtr hWnd, int nIndex);
-        [DllImport("user32")]
-        protected static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwLong);
 
         public MainWindow()
         {
