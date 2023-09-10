@@ -17,7 +17,6 @@ namespace image
 
         public static void Window_setting(dynamic NewWindow, dynamic OldWindow)
         {
-            // 引数の型を明示的に指定
             NewWindow.Left = OldWindow.Left;
             NewWindow.Top = OldWindow.Top;
             NewWindow.Topmost = true;
