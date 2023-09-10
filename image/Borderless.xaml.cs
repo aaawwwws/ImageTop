@@ -15,39 +15,36 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace image
 {
-    /// <summary>
-    /// Window1.xaml の相互作用ロジック
-    /// </summary>
     public partial class Window1 : Window
     {
-        private BitmapImage _image;
+        public BitmapImage _image { get; set; }
 
         public Window1()
         {
             this.AllowsTransparency = true;
             this.WindowStyle = WindowStyle.None;
             InitializeComponent();
-            this.KeyDown += new KeyEventHandler(F12);
+            this.KeyDown += new KeyEventHandler(KeyInput);
         }
 
         public void ImageShow(BitmapImage Image)
         {
             this._image = Image;
             this.ImageBL.StretchDirection = StretchDirection.DownOnly;
-            this.ImageBL.Source = Image;
+            this.ImageBL.Source = _image;
         }
 
-        private void F12(object sender, KeyEventArgs e)
+        private void KeyInput(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.F12)
+            switch (e.Key)
             {
-                MainWindow MW = new MainWindow();
-                MW.Left = this.Left;
-                MW.Top = this.Top;
-                MW._image = this._image;
-                MW.Show();
-                MW.ImageShow(this._image);
-                this.Close();
+                case Key.F12:
+                    Settings.Window_setting(new MainWindow(), this);
+                    break;
+
+                case Key.F11:
+                    this.IsHitTestVisible = false;
+                    break;
             }
         }
     }

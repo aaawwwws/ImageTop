@@ -26,6 +26,7 @@ namespace image
         public string FileSelect()
         {
             OpenFileDialog SelectDialog = new OpenFileDialog();
+
             try
             {
                 SelectDialog.Filter = "イメージファイル(*.bmp;*.gif;*.png;*.jpeg;*.jpg)|*.bmp;*.gif;*.png;*.jpeg;*.jpg|すべてのファイル(*.*)|*.*";
@@ -67,7 +68,7 @@ namespace image
                     this.ImageUri = new BitmapImage(new Uri(ImageFileName));
                     this.MW._image = this.ImageUri;
                     this.MW.Image.StretchDirection = StretchDirection.DownOnly;
-                    this.MW.Image.Source = this.ImageUri;
+                    this.MW.Image.Source = this.MW._image;
                     break;
                 }
                 catch (NotSupportedException e)

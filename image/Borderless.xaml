@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:image"
         mc:Ignorable="d"
         Title="MainWindow" SizeToContent="WidthAndHeight">
+
     <Image Name="ImageBL" />
+    
 </Window>
 
