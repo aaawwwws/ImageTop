@@ -25,7 +25,7 @@ namespace image
     public partial class MainWindow : Window
     {
         public BitmapImage _image { get; set; }
-        private static int Run = 0;
+        private static bool Run = true;
 
         public MainWindow()
         {
@@ -37,12 +37,12 @@ namespace image
         //メインメソッド()
         private void Main()
         {
-            if (Run < 1)
+            if (MainWindow.Run)
             {
                 ImageSelect IS = new ImageSelect(this);
                 IS.ImageSet();
                 _image = IS.ImageUri;
-                Run++;
+                MainWindow.Run = false;
             }
             else
             {
