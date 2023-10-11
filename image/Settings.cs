@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,12 +18,15 @@ namespace image
 
         public static void Window_setting(dynamic NewWindow, dynamic OldWindow)
         {
+            NewWindow.Width = OldWindow.Width;
+            NewWindow.Height = OldWindow.Height;
             NewWindow.Left = OldWindow.Left;
             NewWindow.Top = OldWindow.Top;
             NewWindow.Topmost = true;
             NewWindow.ImageShow(OldWindow._image);
-            NewWindow.Show();
+            NewWindow.SizeToContent = SizeToContent.Manual;
             OldWindow.Close();
+            NewWindow.Show();
         }
     }
 }
